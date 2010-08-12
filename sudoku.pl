@@ -56,6 +56,7 @@ for (my $i = 0; $i < $MAX_NUMBER; $i++) {
 		#
 		# A number has ben given for this position
 		#
+
 		if (exists($GRID[$i][$j])) {
 			push(@DECIDED, "$i,$j");
 		}
@@ -72,7 +73,8 @@ print "\n";
 
 my $attempt = 0;
 my @decided_last_attempt = @DECIDED;
-while (scalar @DECIDED < $MAX_NUMBER**2 && $attempt < $MAX_ATTEMPS) {
+while (scalar @DECIDED < $MAX_NUMBER**2 && scalar @decided_last_attempt > 0
+		&& $attempt < $MAX_ATTEMPS) {
 	$attempt++;
 	my @decided_this_attempt;
 	
@@ -193,7 +195,7 @@ sub print_grid {
 }
 
 #
-# Return the value of this position
+# Returns the value of this position
 #
 sub _position_value {
 	my ($i, $j) = @_;
